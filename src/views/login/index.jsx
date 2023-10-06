@@ -1,23 +1,17 @@
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import { Box, Card, TextField, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 import { setToken } from '../../lib/auth'
 import { useLogin } from '../../hooks/use-login'
 
-// const useLogin = () => {
-//   return (email, password) => {
-//     localStorage.setItem('jwt', `${email}-${password}`)
-
-//     window.location.reload()
-//   }
-// }
-
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const { isLoading, mutate: login } = useLogin({
+    onError: () => toast.error('Invalid Credentials!'),
     onSuccess: (res) => {
       setToken(res.data.jwt)
 
@@ -58,9 +52,10 @@ const Login = () => {
         </Box>
 
         <LoadingButton
+          disabled={!password || !email}
+          loading={isLoading}
           onClick={() => login({ email, password })}
           variant="contained"
-          loading={isLoading}
         >
           LogIn
         </LoadingButton>
