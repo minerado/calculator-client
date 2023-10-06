@@ -11,7 +11,7 @@
 
 1. Clone the repository to your local machine:
 
-`git clone hhttps://github.com/minerado/calculator-client.git`
+`git clone https://github.com/minerado/calculator-client.git`
 
 2. Navigate to the project directory:
 
@@ -32,3 +32,7 @@ This will launch the Vite.js development server, and your project will be availa
 2. Have fun!
 
 Note: you'll need a login, if curious, just send a message at ramondiogo10.1@gmail.com or contact me on [linkedin](https://www.linkedin.com/in/ramon-gomes-91ab3649/)!
+
+### Testing
+
+Just run `npm run test` and it should do everything for you!
