@@ -17,6 +17,7 @@ const Header = () => {
         <Box>
           <Typography>Calculator</Typography>
         </Box>
+
         <Box>
           <Button
             onClick={() => {

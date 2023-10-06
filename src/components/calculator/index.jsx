@@ -1,8 +1,19 @@
 import { useState } from 'react'
-import { Box, Card, FormControl, MenuItem, Select, Skeleton, TextField } from '@mui/material'
+import toast from 'react-hot-toast'
+import {
+  Box,
+  Card,
+  FormControl,
+  MenuItem,
+  Select,
+  Skeleton,
+  TextField,
+  Typography,
+} from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 import useCreateRecord from '../../hooks/use-create-record'
+import useCurrentUser from '../../hooks/use-current-user'
 import useOperations from '../../hooks/use-operations'
 import { range } from '../../lib/functional'
 
@@ -15,16 +26,12 @@ const OPERATION_PARAMS_MAP = {
   random_string: 0,
 }
 
-const getOperationParamsCount = (operations, operationId) => {
-  if (!operations) return 0
-
-  const operation = operations.find((o) => o.id === operationId)
-
-  return OPERATION_PARAMS_MAP[operation?.type]
-}
-
 const Calculator = () => {
-  const { isLoading: isCreatingRecord, mutate: createRecord } = useCreateRecord()
+  const { data: userData } = useCurrentUser()
+
+  const { isLoading: isCreatingRecord, mutate: createRecord } = useCreateRecord({
+    onError: (err) => toast.error(err?.response?.data?.message),
+  })
   const { data: operationsData, isLoading: isLoadingOperations } = useOperations()
 
   const operations = operationsData?.data?.operations ?? []
@@ -32,8 +39,20 @@ const Calculator = () => {
   const [operationId, setOperationId] = useState('')
   const [params, setParams] = useState({ param_1: '', param_2: '' })
 
-  const operationParamsCount = getOperationParamsCount(operations, operationId)
+  const selectedOperation = operations.find((o) => o.id === operationId)
+
+  const operationParamsCount = OPERATION_PARAMS_MAP[selectedOperation?.type] || 0
   const paramsArray = operationParamsCount ? range(0, operationParamsCount) : []
+
+  const hasBalance = selectedOperation?.cost <= userData?.data?.user.balance
+
+  const buttonLabel = () => {
+    if (!selectedOperation) return 'Choose an operation'
+
+    if (!hasBalance) return 'No Funs to Pay for this Operation 😢'
+
+    return `Submit for ${selectedOperation?.cost} money`
+  }
 
   return (
     <Card sx={{ padding: 4 }}>
@@ -45,6 +64,7 @@ const Calculator = () => {
         </Box>
       ) : (
         <FormControl fullWidth sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Typography>Select the operation</Typography>
           {!!operations.length && (
             <Select
               displayEmpty
@@ -57,7 +77,7 @@ const Calculator = () => {
 
               {operations.map((operation) => (
                 <MenuItem key={operation.id} value={operation.id}>
-                  {operation.type}
+                  {operation.type} - {operation.cost}
                 </MenuItem>
               ))}
             </Select>
@@ -78,12 +98,13 @@ const Calculator = () => {
           )}
 
           <LoadingButton
-            size="large"
-            onClick={() => createRecord({ operation_id: operationId, operation_params: params })}
+            disabled={!selectedOperation || !hasBalance}
             loading={isCreatingRecord}
+            onClick={() => createRecord({ operation_id: operationId, operation_params: params })}
             variant="contained"
+            size="large"
           >
-            Submit
+            {buttonLabel()}
           </LoadingButton>
         </FormControl>
       )}
