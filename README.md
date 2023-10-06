@@ -1,8 +1,34 @@
-# React + Vite
+# Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Local Development Setup
 
-Currently, two official plugins are available:
+### Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js - Make sure you have Node.js installed on your machine.
+- You'll have to follow the instructions on the [Elixir Calculator Project](https://github.com/minerado/calculator) to be able to have a running local server.
+
+### Instalation
+
+1. Clone the repository to your local machine:
+
+`git clone hhttps://github.com/minerado/calculator-client.git`
+
+2. Navigate to the project directory:
+
+`cd calculator-client`
+
+3. Install project dependencies using npm, yarn or pnpm
+
+`npm install`
+
+### Running the Development Server
+
+1. Start the development server:
+
+`npm run dev`
+
+This will launch the Vite.js development server, and your project will be available at http://localhost:5174 in your web browser.
+
+2. Have fun!
+
+Note: you'll need a login, if curious, just send a message at ramondiogo10.1@gmail.com or contact me on [linkedin](https://www.linkedin.com/in/ramon-gomes-91ab3649/)!
