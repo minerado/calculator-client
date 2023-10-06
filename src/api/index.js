@@ -2,8 +2,8 @@ import http from 'axios'
 
 import { getToken } from '../lib/auth'
 
-const API_VERSION = import.meta.env.VITE_API_VERSION
-const HOST = import.meta.env.VITE_API_HOST
+const API_VERSION = import.meta.env.VITE_API_VERSION || 'v1'
+const HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000'
 
 const client = (version) => {
   const token = getToken()
