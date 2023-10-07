@@ -4,8 +4,7 @@
 
 ### Prerequisites
 
-- Node.js - Make sure you have Node.js installed on your machine.
-- You'll have to follow the instructions on the [Elixir Calculator Project](https://github.com/minerado/calculator) to be able to have a running local server.
+- Docker - Make sure you have Docker installed on your machine.
 
 ### Instalation
 
