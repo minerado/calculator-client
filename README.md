@@ -1,5 +1,12 @@
 # Calculator
 
+## Demo
+
+Visit the [demo page](calculator-client-peach.vercel.app) and log in with:
+
+- Email: test@test.com
+- Password: 123456
+
 ## Local Development Setup
 
 ### Prerequisites
@@ -26,7 +33,7 @@ This will launch the Vite.js development server, and your project will be availa
 
 2. Have fun!
 
-- Login: test@test.com
+- Email: test@test.com
 - Password: 123456
 
 Note: If you need to increase your balance, just send a message at ramondiogo10.1@gmail.com or contact me on [linkedin](https://www.linkedin.com/in/ramon-gomes-91ab3649/)!
