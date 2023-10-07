@@ -17,22 +17,17 @@
 
 `cd calculator-client`
 
-3. Install project dependencies using npm, yarn or pnpm
-
-`npm install`
-
 ### Running the Development Server
 
-1. Start the development server:
+1. Setup and start the development server:
 
-`npm run dev`
+`docker compose up`
 
 This will launch the Vite.js development server, and your project will be available at http://localhost:5174 in your web browser.
 
 2. Have fun!
 
-Note: you'll need a login, if curious, just send a message at ramondiogo10.1@gmail.com or contact me on [linkedin](https://www.linkedin.com/in/ramon-gomes-91ab3649/)!
+- Login: test@test.com
+- Password: 123456
 
-### Testing
-
-Just run `npm run test` and it should do everything for you!
+Note: If you need to increase your balance, just send a message at ramondiogo10.1@gmail.com or contact me on [linkedin](https://www.linkedin.com/in/ramon-gomes-91ab3649/)!
