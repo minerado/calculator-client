@@ -16,6 +16,7 @@ import useCreateRecord from '../../hooks/use-create-record'
 import useCurrentUser from '../../hooks/use-current-user'
 import useOperations from '../../hooks/use-operations'
 import { range } from '../../lib/functional'
+import { parseErrors } from '../../lib/query'
 
 const OPERATION_PARAMS_MAP = {
   addition: 2,
@@ -30,7 +31,7 @@ const Calculator = () => {
   const { data: userData } = useCurrentUser()
 
   const { isLoading: isCreatingRecord, mutate: createRecord } = useCreateRecord({
-    onError: (err) => toast.error(err?.response?.data?.message),
+    onError: (err) => toast.error(parseErrors(err)),
   })
   const { data: operationsData, isLoading: isLoadingOperations } = useOperations()
 
@@ -49,7 +50,7 @@ const Calculator = () => {
   const buttonLabel = () => {
     if (!selectedOperation) return 'Choose an operation'
 
-    if (!hasBalance) return 'No Funs to Pay for this Operation 😢'
+    if (!hasBalance) return 'No Funds to Pay for this Operation 😢'
 
     return `Submit for ${selectedOperation?.cost} money`
   }

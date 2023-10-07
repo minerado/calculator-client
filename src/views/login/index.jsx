@@ -4,6 +4,7 @@ import { Box, Card, TextField, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 import { setToken } from '../../lib/auth'
+import { parseErrors } from '../../lib/query'
 import { useLogin } from '../../hooks/use-login'
 
 const Login = () => {
@@ -11,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
 
   const { isLoading, mutate: login } = useLogin({
-    onError: () => toast.error('Invalid Credentials!'),
+    onError: (err) => toast.error(parseErrors(err)),
     onSuccess: (res) => {
       setToken(res.data.jwt)
 
