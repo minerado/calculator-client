@@ -2,7 +2,7 @@
 
 ## Demo
 
-Visit the [demo page](calculator-client-peach.vercel.app) and log in with:
+Visit the [demo page](https://calculator-client-peach.vercel.app) and log in with:
 
 - Email: test@test.com
 - Password: 123456
